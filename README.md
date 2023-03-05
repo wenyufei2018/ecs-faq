@@ -1,52 +1,50 @@
-# Entity Component System FAQ
-This FAQ is for anyone interested in ECS & modern, high performance game development. The goal is for answers to be short & correct, but not necessarily complete. The [Resources section](#Resources) contains more in-depth articles.
+该仓库是 [ecs-faq](https://github.com/SanderMertens/ecs-faq) 的翻译。
 
-If you find anything missing or incorrect in the FAQ, feel free to create an issue or PR!
-
-## About me
-I'm the author of [Flecs](https://github.com/SanderMertens/flecs), an Entity Component System for C & C++. I'm always experimenting with better ways to implement ECS features, and write about it if I can. If you're interested in discussing ECS, [join the Discord](https://discord.gg/BEzP5Rgrrp)!
+## About Author 
+He's the author of [Flecs](https://github.com/SanderMertens/flecs), an Entity Component System for C & C++. He's always experimenting with better ways to implement ECS features, and write about it if I can. If you're interested in discussing ECS, [join the Discord](https://discord.gg/BEzP5Rgrrp)!
 
 ## General Questions
-- [What is ECS?](#what-is-ecs)
-- [When is something an ECS?](#when-is-something-an-ecs)
-- [Why is ECS used?](#why-is-ecs-used)
-- [Who is using ECS?](#who-is-using-ecs)
-- [How is ECS different from OOP?](#how-is-ecs-different-from-oop)
-- [How is ECS different from Entity-Component frameworks?](#how-is-ecs-different-from-entity-component-frameworks)
-- [Is ECS hard to learn?](#is-ecs-hard-to-learn)
-- [Is ECS a lower level of abstraction?](#is-ecs-a-lower-level-of-abstraction)
-- [Does ECS require writing more code?](#does-ecs-require-writing-more-code)
-- [Is ECS good for low-level code?](#is-ecs-good-for-low-level-code)
-- [Can ECS be implemented in any language?](#can-ecs-be-implemented-in-any-language)
-- [Should I write my own ECS?](#should-i-write-my-own-ecs)
-- [Is ECS fast?](#is-ecs-fast)
-- [Is ECS code more reusable?](#is-ecs-code-more-reusable)
-- [Is ECS good for multithreading?](#is-ecs-good-for-multithreading)
-- [Can ECS be used outside of gaming?](#can-ecs-be-used-outside-of-gaming)
-- [How do I start with ECS?](#how-do-i-start-with-ecs)
-- [How do I design for ECS?](#how-do-i-write-for-ecs)
-- [What are the different ways to implement an ECS?](#what-are-the-different-ways-to-implement-an-ecs)
-- [How are components modified?](#how-are-components-modified)
-- [How are entities matched with systems?](#how-are-entities-matched-with-systems)
-- [What are entity relationships?](#what-are-entity-relationships)
+
+- [什么是 ECS？](#什么是-ECS)
+- [ECS 的普遍定义？](#ECS-的普遍定义)
+- [为什么使用 ECS？](#为什么使用-ECS)
+- [谁使用 ECS？](#谁使用-ECS)
+- [ECS 和 OOP 的区别是什么？](#ECS-和-OOP-的区别是什么)
+- [ECS 和 Entity-Component 的区别是什么？](#ECS-和-Entity-Component-的区别是什么)
+- [ECS 难学么？](#ECS-难学么)
+- [ECS 是一个底层的抽象么？](#ECS-是一个底层的抽象么)
+- [ECS 需要写更多的代码么？](#does-ecs-require-writing-more-code)
+- [ECS 对 low-level code 有用吗？](#ECS-对-low-level-code-有用吗)
+- [ECS 可以用任何语言实现吗？](#ECS-可以用任何语言实现吗)
+- [我应该自己编写 ECS 吗？](#我应该自己编写-ECS-吗)
+- [ECS 更快么？](#ECS-更快么)
+- [ECS 代码是否更可复用？](#ECS-代码是否更可复用)
+- [ECS 适合多线程吗？](#ECS-适合多线程吗)
+- [ECS 可以在游戏之外使用吗？](#ECS-可以在游戏之外使用吗)
+- [如何开始使用ECS？](#如何开始使用ECS)
+- [如何设计 ECS？](#如何设计-ECS)
+- [实现 ECS 的不同方式有哪些？](#实现-ECS-的不同方式有哪些)
+- [如何修改 Component？](#如何修改-Component)
+- [Entity 如何与 System 匹配？](#Entity-如何与-System-匹配)
+- [什么是 entity relationships？](#什么是-entity-relationships)
 
 ## How-to
-- [How to create a hierarchy in ECS?](#how-to-create-a-hierarchy-in-ecs)
-- [How to store spatial data in ECS?](#how-to-store-spatial-data-in-ecs)
+- [在 ESC 中如何创建一个 hierarchy？](#在-ESC-中如何创建一个-hierarchy)
+- [在 ECS 中如何存储 spatial data？](#在-ECS-中如何存储-spatial-data)
 
 ## Data Oriented Design Questions
-- [What is Data Oriented Design?](#what-is-data-oriented-design)
-- [Is ECS the same as DoD?](#is-ecs-the-same-as-dod)
-- [What is Random Access Memory?](#what-is-random-access-memory)
-- [What is a CPU cache?](#what-is-a-cpu-cache)
-- [What is a cache line](#what-is-a-cache-line)
-- [What is locality of reference?](#what-is-locality-of-reference)
-- [What is SIMD?](#what-is-simd)
-- [What is vectorization?](#what-is-vectorization)
-- [What is false sharing?](#what-is-false-sharing)
-- [What is AoS?](#what-is-aos)
-- [What is SoA?](#what-is-soa)
-- [What is branch prediction?](#what-is-branch-prediction)
+- [什么是面向数据的设计？](#什么是面向数据的设计)
+- [ECS 与 DoD 是否相同？](#ECS-与-DoD-是否相同)
+- [什么是随机 RAM？](#什么是随机-RAM)
+- [什么是 CPU cache？](#什么是-CPU-cache)
+- [什么是 cache line？](#什么是-cache-line)
+- [什么是 locality of reference?](#什么是-locality-of-reference?)
+- [什么是 SIMD？](#什么是-SIMD)
+- [什么是 vectorization？](#什么是-vectorization)
+- [什么是 false sharing？](#什么是-false-sharing)
+- [什么是 AoS?](#什么是-aos)
+- [什么是 SoA?](#什么是-soa)
+- [什么是 branch prediction?](#什么是-branch-prediction)
 
 ## Glossary
 - [Entity](#entity)
@@ -116,34 +114,29 @@ The current list includes both open and closed source ECS implementations, and e
 
 ## General Questions
 
-### What is ECS?
-ECS ("Entity Component System") describes a design approach which promotes code reusability by separating data from behavior. Data is often stored in cache-friendly ways which benefits performance. An ECS has the following characteristics:
+### 什么是 ECS
+ECS ("Entity Component System") 是一种通过 **将数据与行为分离** 来提高代码可重用性的设计方法。数据通常以 cache-friendly 的方式存储，从而提高性能。ECS 由 System 、 Entity 和 Component 构成。
 
-- It has entities, which are unique identifiers
-- It has components, which are plain datatypes without behavior
-- Entities can contain zero or more components
-- Entities can change components dynamically
-- It has systems, which are functions matched with entities that have a certain set of components.
+- Entity 用于唯一标识
+- Component 是没有行为的纯数据类型
+- Entity 可以包含一个或者多个 Component
+- Entity 可以动态的更新 Component
+- System 是 与具有特定 Component集合 的 Entity 相匹配的功能
 
-The ECS design pattern is often enabled by a framework. The term "Entity Component System" is often used to indicate a specific implementation of the design pattern.
+### ECS 的普遍定义
+在实践中，ECS 的使用更加自由。有些 ECS 框架没有 System ，只提供查询 Entity 的方法；有些框架可能允许向 Entity 添加非 Component 的内容。
 
-### When is something an ECS?
-The most rigid interperation of an ECS is something that has entities, components and systems, according to the definitions in the previous question.
+一个框架，允许向 Entity 添加东西，并且有 查询具有某些东西的 Entity 的方法，通常被认为是 ECS。
 
-In practice ECS is used a bit more liberally. Some ECS frameworks do not have systems, and only provide methods for querying entities. Other frameworks may allow for adding things to entities than are not components. These implementations are still considered ECS by many people.
+### 为什么使用 ECS？
+ECS 在游戏开发者中越来越受欢迎的原因有很多：
 
-A framework that lets you add "things" to entities, with a way to query for entities that have some things but not other things, is generally considered to be an ECS.
+- ECS 通常可以支持更多的游戏对象
+- ECS 代码更易于重用
+- ECS 代码更易于扩展新功能
+- ECS 允许更动态的编码风格
 
-### Why is ECS used?
-There are a number of reasons why ECS is gaining popularity amongst game developers:
-
-- ECS can typically support larger numbers of game objects
-- ECS code tends to be more reusable 
-- ECS code is easier to extend with new features
-- ECS allows for a more dynamic coding style
-
-### Who is using ECS?
-A number of commercial projects and engines today use or have used ECS. If you know of other projects that uses ECS, let me know!
+### 谁使用 ECS？
 
 - [Unity DOTS](https://unity.com/dots) (Engine)
 - [Unreal (Sequencer)](https://www.unrealengine.com/en-US/tech-blog/performance-at-scale-sequencer-in-unreal-engine-4-26) (Engine)
@@ -170,22 +163,22 @@ A number of commercial projects and engines today use or have used ECS. If you k
 - [Territory Control](https://store.steampowered.com/app/690290/Territory_Control_2/) (Game, uses Flecs)
 - [Sol Survivor](https://nicok.itch.io/sol-survivor-demo) (Game, uses Flecs)
 
-### How is ECS different from OOP?
-ECS is often described as an alternative to Object Oriented Programming. While ECS and OOP overlap, there are differences that impact how applications are designed:
+### ECS 和 OOP 的区别是什么？
+ECS 通常被认为是 OOP 的替代方案。虽然 ECS 和 OOP 重叠，但在应用程序的设计方式上有差异：
 
-- Inheritance is a 1st class citizen in OOP, composition is a 1st class citizen in ECS.
-- OOP encourages encapsulation of data, ECS encourages exposed POD (plain old data) objects.
-- OOP colocates data with behavior, ECS separates data from behavior.
-- OOP Object instances are of a single static type, ECS entities can have multiple, dynamically changing components
+- 继承是 OOP 中的一等公民，组合是 ECS 中的一等公民。
+- OOP 鼓励封装数据， ECS 鼓励公开 POD(plain old data) 对象。
+- OOP 将数据与行为放在一起(class)，ECS 将数据和行为分离。
+- OOP 对象实例是单一的静态类型，ECS Entity 可以有多个动态变化的 Component
 
-It should be noted that some have argued that ECS fits the characterisics of _Object Oriented Design_ (see https://www.gamedev.net/blogs/entry/2265481-oop-is-dead-long-live-oop/) and should therefore be considered a subset. 
+应该注意的是，有些人认为 ECS 符合面向对象设计的特点（参见https://www.gamedev.net/blogs/entry/2265481-oop-is-dead-long-live-oop/)，因此 ECS 应被视为 OOP 的子集。
 
-However, in practice the design process of an ECS application is sufficiently different from that of what most people would recognize as OOP. As such it is at least useful to approach it as a separate approach towards design.
+然而，在实践中，ECS 应用程序的设计过程与大多数人认为的 OOP 完全不同。因此，将其作为一种单独的设计方法至少是有用的。
 
-### How is ECS different from Entity-Component frameworks?
-Confusingly, ECS and Entity-Component frameworks (EC) are not the same. EC frameworks, as typically found in game engines, are similar to ECS in that they allow for the creation of entities and the composition of components. However, in an EC framework, components are classes that contain both data and behavior, and behavior is executed directly on the component.
+### ECS 和 Entity-Component 的区别是什么？
+令人困惑的是，ECS 和 Entity-Component 并不相同。通常在游戏引擎 中发现的 EC 与 ECS 相似，因为它们允许创建 Entity和 Component。然而，在 EC 中， Component 是同时包含数据和行为的类，行为直接在 Component 上执行。
 
-A simple EC framework would look something like this:
+一个简单的 EC 应该是这样的：
 
 ```cpp
 class IComponent {
@@ -202,109 +195,107 @@ public:
 };
 ```
 
-Building features in an EC framework generally means inheriting from an `IComponent` interface, and composing entities from multiple components. An example of EC in practice is Unity's `GameObject` system.
+在 EC 中构建特性通常意味着从 IComponent 接口继承，并从多个 Component 组成 Entity。EC 在实践中的一个例子是 Unity 的 GameObject 系统。
 
-### Is ECS hard to learn?
-The small number of concepts and rules of an ECS are generally easy to learn. Applying them correctly however can take practice. Some aspects of ECS design go against intuition, especially when coming from an OOP background.
+### ECS 难学么？
+ECS 的少量概念和规则通常很容易学习。然而，正确应用它们需要练习。ECS设计的某些方面违背了直觉，尤其是对于当来自 OOP 背景的开发者。
 
-Anecdotally, users have reported that once ECS "clicked", it made it easier to write, reuse and scale code.
+有趣的是，一些用户报告说，一旦开始用 ECS，它就更容易编写、重用和扩展代码。
 
-### Is ECS a lower level of abstraction?
-Not necessarily. While some ECS designs can leverage low-level machine optimizations, the code written for an ECS is not necessarily lower or higher level than other approaches.
+### ECS 是一个底层的抽象么？
+不一定。虽然某些 ECS 设计可以利用低级别的机器优化，但为 ECS 编写的代码不一定比其他方法低或高。
 
-### Does ECS require writing more code?
-There is not a single answer to this, and highly depends on the ECS framework and engine that is used. 
+### ECS 需要写更多的代码么？
+对此没有单一的答案，并且高度依赖于所使用的 ECS 框架和 engine。
 
-When an ECS framework is integrated with an engine, it can result in pretty compact and concise code that can be even shorter than non-ECS alternatives. Examples of engines with integrated ECS are Bevy, Amethyst and Our Machinery.
+当一个 ECS 框架与一个 engine 集成时，它可以产生非常紧凑和简洁的代码，甚至比非 ECS 替代方案更短。
 
-When ECS is not integrated with an engine, the additional glue-code to bridge between the native engine types and the ECS can cause an application to have to write more code.
+当 ECS 未与 engine 集成时，在 engine 类型和 ECS 之间桥接的粘合代码可能会导致应用程序不得不编写更多代码。
 
-Having said that, the time spent on writing ECS code is offset by time savings as the result of a more maintainable code base.
+话虽如此，由于代码库更易于维护，编写 ECS 代码所花费的时间被节省的时间所抵消。
 
-### Is ECS good for low level code?
-Low level engine code such as rendering and physics may want to use advanced features of the underlying hardware such as vectorization, while optimizing cache locality. Some ECS frameworks are better suited for this than others. 
+### ECS 对 low-level code 有用吗？
+low-level code（如渲染和物理）可能希望使用底层硬件的高级功能(eg: vectorization)，同时优化 cache locality。一些 ECS 框架比其他框架更适合于此。
 
-Generally speaking, when an ECS provides access to raw component arrays, it lends itself better towards low-level optimizations. Another deciding factor, especially in modern games, is how easy it is to multithread such systems.
+一般来说，当 ECS 提供 raw component arrays 的访问权限时，它更适合于 low-level 优化。另一个决定因素，ECS 在多线程这样的系统中更容易，特别是在现代游戏中。
 
-### Can ECS be implemented in any language?
-Yes.
+> raw component arrays（原始组件数组）是指对组件数据进行连续存储的一种方式。具体地说，它是指将每个组件类型的实例存储在一个连续的数组中，使得它们在内存中是紧凑的
 
-### Should I write my own ECS?
-Because of its small set of concepts and rules, building a functional ECS is not hard. There are many benefits to building your own, like the freedom to add new features, and only building features that you really need.
+### ECS 可以用任何语言实现吗？
+是
 
-If you write your own implementation however, you should fully expect that it will not outperform established implementations. There are a lot of tricks that have been invented over time to provide a balanced performance across ECS operations. It requires constant education, experimentation and iteration to stay on top of new developments.
+### 我应该自己编写 ECS 吗？
+由于它的概念和规则很小，构建一个功能性的 ECS 并不难。构建自己的 ECS 有很多好处，比如可以自由添加新功能，以及只构建真正需要的功能。
 
-As is the case with many things, writing an ECS is easy to learn, but hard to master.
+然而，如果您编写自己的实现，您应该充分期望它不会超过已建立的实现。随着时间的推移，人们发明了许多技巧来在 ECS 操作中提供平衡的性能。它需要不断的实验和迭代。
 
-### Is ECS fast?
-Generally yes, though this of course depends on what is being measured, and the ECS implementation. Different implementations make different tradeoffs, and as such an operation that is really fast in one framework is quite slow in another. 
+正如许多事情一样，编写 ECS 很容易，但很难掌握。
 
-Things that ECS implementations are generally good at are querying and iterating sets of entities linearly, or dynamically changing components at runtime. Things that ECS implementations are generally not good at are queries or operations that require highly specialized data structures, such as binary trees or spatial structures. Knowing the tradeoffs of an implementation and levering its design ensure you get the most performance out of an ECS.
+### ECS 更快么？
+通常是的。但这取决于所测量的内容以及 ECS 的实现。不同的实现会产生不同的权衡，因此，在一个框架中非常快的操作可能在另一个框架内非常慢。
 
-### Is ECS code more reusable?
-Yes. The reason for this is that behavior in an ECS is matched with a set of components, vs. for example being tightly coupled with a class in OOP. This has a couple of implications.
+ECS 实现通常擅长的是**线性查询**和**迭代 entities 集**，或者在**运行时动态更改 components**。ECS 实现通常不擅长的是需要高度专业化的数据结构（如二叉树或空间结构）的查询或操作。了解实现的权衡并利用其设计，可以确保您从 ECS 中获得最佳性能。
 
-The first one is obvious. Because behavior is not tied to a single class, it can be reused across entities of different classes. The typical example is that of a "Move" system that is matched with any entity that has a "Position" and "Velocity" component.
+### ECS 代码是否更可复用？
+是的。ECS 中的行为与一组 components 相匹配，而不是与 OOP 中的类紧密耦合。这有两个含义。
 
-This is not impossible to achieve in other, more OOP-style designs, but this often relies on class-based inheritance. Inheritance has well-known problems, such as how difficult it can be to refactor a class hierarchy, or how low-level base classes tend to accumulate bloat over time.
+第一个是显而易见的。因为行为不绑定到单个类，所以它可以在不同类的 entities 之间复用。典型的例子是 move system，它与具有 速度components 和 速度components 的任何 entities 相匹配。这在其他 OOP 风格的设计中并非不可能实现，但这通常依赖于基于类的继承。继承有众所周知的问题，例如重构 class hierarchy 很困难，或者低级基类随着时间的推移会积累膨胀。
 
-However, EC frameworks can provide similar levels of reusability, where components are simply added to game entities. (see [How is ECS different from Entity-Component frameworks?](#how-is-ecs-different-from-entity-component-frameworks)).
+EC 框架可以提供类似级别的可重用性，其中 components 只是简单地添加到 entities 中。但是 ECS 的最大优势在于，可以在任何开发阶段引入新 system ，并将自动与具有正确 components 的任何新 entities 相匹配。这促进了一种设计，即 System 被开发为单一责任的小功能单元，可以轻松地跨不同项目的部署。
 
-The big advantage of ECS here however, is that new systems can be introduced at any stage of development, and will automatically get matched with any existing and new entities that have the right components. This promotes a design where systems are developed as single-responsibility, small units of functionality that can be easily deployed across different projects.
+### ECS 适合多线程吗？
+通常是的。数据和行为的分离使**识别单个系统和它们的依赖关系**以及**它们应该如何调度**变得更加容易。多线程的方法在不同的 ECS 实现之间有所不同，但大多数方法都使多线程代码更容易。
 
-### Is ECS good for multithreading?
-Generally yes. The separation of data and behavior makes it easier to identify individual systems, what their dependencies are, and how they should be scheduled. The approach towards multithreading differs between different ECS implementations, but most approaches make it easier to multithread code.
+### ECS 可以在游戏之外使用吗？
+是的。
 
-### Can ECS be used outside of gaming?
-Yes. It can be (and has been) used for projects outside of gaming.
+### 如何开始使用ECS？
+我强烈建议阅读 ECS 上的现有资源，并练习他们描述的方法。阅读示例 ECS 项目的代码也是快速理解 ECS 应用程序编写方式的好方法。
 
-### How do I start with ECS?
-I highly recommend reading existing resources on ECS and experimenting with the approaches they describe. Reading the code of example ECS projects can also be a good way to fast-track your understanding of how ECS applications are written.
+### 如何设计 ECS？
+设计 ECS 应用程序首先要创建包含数据的 Component（数据结构）。需要考虑如下的点：
 
-### How do I design for ECS?
-Designing an ECS application starts with creating the components (data structures) that contain the game data. Important things to take into account are:
+- 存在多少数据实例
+- 访问数据的频率
+- 数据突变的频率
+- 何时需要访问/更新数据
+- 哪些数据被一起访问/更新
+- 数据的基数是多少
 
-- How many instances of the data will exist
-- How often is data accessed
-- How often is the data mutated
-- When does data need to be accessed/mutated
-- Which data is accessed/mutated together
-- What is the cardinality of the data
+设计具有单一责任的 Component 和 System 是一种良好的做法。这使得它们更容易在项目中重用，并且更容易重构代码。
 
-It is good practice to design components and systems to have a single responsibility. This makes them easier to reuse across projects, and makes it easier to refactor code.
-
-### What are the different ways to implement an ECS?
-There are many different ways in which to implement an ECS, each with different tradeoffs. This non exhaustive list contains some of the more popular approaches:
+### 实现 ECS 的不同方式有哪些？
+有许多不同的方式可以实现实体-组件系统（ECS），每种方式都具有特定的优点和缺点，具体取决于特定的用例。下面是一些常见的ECS实现方法，
 
 #### Archetypes (aka "Dense ECS" or "Table based ECS")
-An archetype ECS stores entities in tables, where components are columns and entities are rows. Archetype implementations are fast to query and iterate.
+Archetypes ECS 将 Entity 存储在 Table 中，其中 Component 是列， Entity 是行。 Archetypes 实现可以快速查询和迭代。
 
 Examples of archetype implementations are [Flecs](https://github.com/SanderMertens/flecs), [Our Machinery](https://ourmachinery.com/), [Unity DOTS](https://unity.com/dots), [Unreal Sequencer](https://www.unrealengine.com/en-US/tech-blog/performance-at-scale-sequencer-in-unreal-engine-4-26), [Unreal Mass](https://docs.unrealengine.com/5.0/en-US/overview-of-mass-entity-in-unreal-engine/), [Bevy ECS](https://bevyengine.org/), [Legion](https://github.com/amethyst/legion) and [Hecs](https://github.com/Ralith/hecs).
 
 #### Sparse set ECS (aka "Sparse ECS")
-A sparse set based ECS stores each component in its own sparse set which is has the entity id as key. Sparse set implementations allow for fast add/remove operations.
+Sparse set ECS 将每个 Component 存储在其自己的 Sparse set 中，该 Sparse set 以 Entity id 为密钥。Sparse set 实现允许快速添加/删除操作。
 
 Examples of sparse set implementations are [EnTT](https://github.com/skypjack/entt) and [Shipyard](https://github.com/leudz/shipyard).
 
 #### Bitset based ECS
-A bitset-based ECS stores components in arrays where the entity id is used as index, and uses a bitset to indicate if an entity has a specific component. Different flavors of bitset-based approaches exist. One approach is to have an array for each component with an accompanying bitset to indicate which entities have the component. Another approach uses the [hibitset](#hibitset) data structure (see link).
+Bitset based ECS 将 Component 存储在数组中，其中 Entity id 用作索引，并使用 Bitset 指示 Entity 是否具有特定 Component。存在不同类型的基于 Bitset 的方法。一种方法是为每个 Component 设置一个数组，并附带一个位集，以指示哪些 Entity  具有该 Component。另一种方法使用[hibitset](#hibitset)数据结构（请参阅链接）。
 
 Examples of bitset implementations are [EntityX](https://github.com/alecthomas/entityx) and [Specs](https://github.com/amethyst/specs).
 
 #### Reactive ECS
-A reactive ECS uses signals resulting from entity mutations to keep track of which entities match systems/queries.
+Reactive ECS 使用由 Entity 突变产生的信号来跟踪哪些 Entity匹配 System/Queries
 
 An example of a reactive ECS is [Entitas](https://github.com/sschmid/Entitas-CSharp).
 
-### How are components modified?
-There are usually two ways in which an ECS allows for modifying a component, which is either by modifying the component on a single entity, or modifying the component values of many entities in a system.
+### 如何修改 Component？
+ECS通常有两种方式允许修改 Component，一种是通过修改单个 Entity 上的 Component，另一种是修改 System 中多个 Entity 的 Component。
 
-An example of the first approach:
+第一种方法
 ```cpp
 entity.set<Position>({10, 20});
 ```
 
-An example of the second approach:
+第二种方法
 ```cpp
 system<Position, Velocity>().each(
     [](entity e, Position& p, Velocity & v) {
@@ -313,30 +304,28 @@ system<Position, Velocity>().each(
     });
 ```
 
-The second approach is generally faster as it requires less lookups, and can take advantage of efficient component storage methods.
+第二种方法通常更快，因为它需要更少的查找，并且可以利用高效的 Component 存储方法。
 
-### How are entities matched with systems?
-There are three popular ways of implementing this.
+### Entity 如何与 System 匹配？
+有三种流行的实现方法。
 
-1. In an archetype-based ECS a query stores a list of matched tables, where a table can contain many entities. This approach has as advantage that as tables stabilize quickly, query evaluation overhead is reduced to zero on average.
+1. 在 Archetypes ECS 中，查询存储匹配 Table 的列表，其中 Table 可以包含许多 Entity。这种方法的优点是，随着 Table 快速稳定，查询评估开销平均减少到零。
+2. 在 Sparse set 中，查询会迭代一个查询 Component （通常是 Entity 最少的 Component ）中的所有 Entity ，并测试每个后续 Component 是否有 Entity。Bitset based ECS 实现使用类似的方法。
+3. 在 Reactive ECS 中，System 通过监听可能导致 Entity 匹配的信号来收集具有正确 Component 集合的 Entity。
 
-2. In a sparse set ECS a query iterates all entities in one of the queried for components (usually the one with the least entities) and tests for each subsequent component if the entity has it. Bitset-based ECS implementations use a similar approach.
-
-3. In a reactive ECS a system collects entities that have the right set of components by listening for signals that could cause an entity to match.
-
-### What are entity relationships?
-Entity relationships are an extension to the ECS model where in addition to adding components, a pair of things can be added to an entity. A simple example of a relationship might look like this:
+### 什么是 entity relationships？
+entity relationships 是 ECS 模型的扩展，在 ECS 模型中，除了添加 Component 之外，还可以向 Entity 添加一对对象。一个简单的关系示例可能如下：
 
 ```c
 alice.add<Likes>(bob);
 ```
 
-In this example "Likes, bob" is the pair, "Likes" is a relationship kind and "bob" is the relationship target. Both "alice" and "bob" are regular entities. For more information on entity relationships, see [this article](https://ajmmertens.medium.com/building-games-in-ecs-with-entity-relationships-657275ba2c6c).
+在本例中，"Likes, bob" 是一对，"Likes" 是一种 relationships，"bob" 是 relationship 目标。alice 和 bob 都是常规 Entity 。entity relationships 的更多信息，看 [this article](https://ajmmertens.medium.com/building-games-in-ecs-with-entity-relationships-657275ba2c6c).
 
 ## How-to
 
-### How to create a hierarchy in ECS?
-There are several ways to implement a hierarchy in ECS, and it depends on an ECS implementation which ones are available to an application. One approach that works in any implementation is to store the hierarchy in components like so:
+### 在 ESC 中如何创建一个 hierarchy？
+有几种方法可以在 ECS 中实现 hierarchy，这取决于应用程序可以使用的 ECS 实现。在任何实现中都可以使用的一种方法是将 hierarchy 存储在 Component 中，如下所示：
 
 ```c
 // Store the parent entity on child entities
@@ -357,75 +346,85 @@ struct ChildList {
 };
 ```
 
-The disadvantage of this approach is that it relies on component lookups, which can slow down systems that iterate a hierarchy. While flexible, this approach is not ideal for low-level systems, such as applying transforms.
+这种方法的缺点是依赖于 Component 查找，会降低系统迭代 hierarchy 的速度。虽然这种方法很灵活，但对于低级系统（如 applying transforms）来说，这种方法并不理想。
 
-An approach that works especially well if an application just needs to iterate a hierarchy top-down is to sort entities based on their depth in the hierarchy. This has as advantage that it is fast to iterate. A disadvantage is that it requires frequent sorting.
+如果应用程序只需要从上到下迭代 hierarchy ，一种特别有效的方法是根据 Entity 在 hierarchy 中的深度对其进行排序。这具有迭代的优点是速度快，缺点是它需要频繁的排序。
 
-Archetype ECS frameworks may allow splitting up subtrees across different tables. Tables/subtrees can be sorted according to their depth. This has as advantage that iteration is fast, and that sorting is infrequent. The disadvantage of this approach is that it can create a lot of small tables, which can degrade performance.
+Archetype ECS 框架可能允许在不同的表中拆分子树。表/子树可以根据其深度进行排序。这样做的优点是迭代速度快，排序不频繁。但缺点是它会创建许多小表，降低性能。
 
-### How to store spatial data in ECS?
-Spatial data structures like quadtrees and octrees are usually not directly stored in an ECS, as their layout does not match well with the typical ECS layout.
+### 在 ECS 中如何存储 spatial data？
+四叉树和八叉树等 spatial data 通常不会直接存储在ECS中，因为它们的布局与典型的 ECS 布局不匹配。
 
-One approach that works well for narrow-phase spatial queries in combination with an ECS is to create a query that iterates relevant entities and stores them in a spatial structure at the beginning (or end) of each frame.
+一种与 ECS 相结合的 narrow-phase spatial 查询非常有效的方法是创建一个查询，该查询迭代相关 Entity 并将它们存储在每个帧开头（或结尾）的 spatial data 中。
 
-For broad-phase spatial queries an application could leverage runtime tags (if the ECS supports it) where a tag corresponds with a cell in a spatial grid. Combined with queries that match the tag, an application can quickly discard large groups of entities that are not in a certain area.
+对于 broad-phase spatial 查询，应用程序可以利用运行时标记（如果 ECS 支持），其中标记与空间网格中的单元格相对应。结合与标记匹配的查询，应用程序可以快速丢弃不在特定区域内的大量 Entity。
 
 ## Data Oriented Design
 
-### What is Data Oriented Design
-Wikipedia defines Data Oriented Design as:
+### 什么是面向数据的设计
+维基百科将面向数据的设计定义为：
 
-> ... a program optimization approach motivated by efficient usage of the CPU cache, used in video game development. The approach is to focus on the data layout, separating and sorting fields according to when they are needed, and to think about transformations of data.
+> ... 在视频游戏开发中，使用的一种 **激励 CPU缓存 有效使用** 的优化方法。这种方法是**关注数据布局**，**根据需要对字段进行分离和排序**，并**考虑数据的转换**。
 
-Data oriented design is an umbrella term for a large collections of techniques and conditions under which those techniques should be used. In general the goal is to analyse the access patterns of the different kinds of data in an application, and select data structures that _for those access patterns_ optimally leverage the underlying hardware. Hardware optimizations are often related (but not limited) to optimizing usage of the CPU cache, limit loading/storing to RAM (cache misses) and usage of SIMD instructions.
+面向数据的设计是大量技术和条件的统称。一般来说，他的目标是分析应用程序中不同类型数据的访问模式，并为这些访问模式选择数据结构，以最佳地利用底层硬件。**硬件优化**通常与（但不限于）**优化CPU缓存的使用**、**减少对 RAM（缓存未命中）的加载/存储**以及**SIMD 指令的使用**有关。
 
-A comprehensive overview of Data oriented design is the "Data oriented design" book by Richard Fabian:
-[https://www.dataorienteddesign.com/dodbook/](https://www.dataorienteddesign.com/dodbook/)
+理查德·法比安（Richard Fabian）的《Data oriented design》一书全面介绍了面向数据设计：[https://www.dataorienteddesign.com/dodbook/](https://www.dataorienteddesign.com/dodbook/)
 
-### Is ECS the same as DoD?
-No. It is possible to write code that uses DoD principles without it being ECS, and it is possible to create an ECS that does not leverage DoD.
+### ECS 与 DoD 是否相同？
 
-The ECS pattern does lend itself well towards DoD, which is why many ECS frameworks (though not all) have a storage design that allows applications to leverage the optimizations enabled by DoD.
+不相同。
 
-If an ECS iterates contiguous component arrays, it allows for leveraging DoD principles and optimizations.
+ECS 模式确实很适合 DoD，这就是为什么许多 ECS 框架（尽管不是所有框架）都具有 DoD 的存储设计。
 
-### What is Random Access Memory?
-RAM is the kind of memory that computers typically have lots of, and is where the entire state of applications and their code is stored. A CPU interfaces with RAM when it executes application code. 
+如果 ECS 迭代 contiguous component arrays，则需要利用 DoD 原则和优化。
 
-While RAM is incredibly fast in absolute terms, the bus between a CPU and RAM can become a bottleneck in data-heavy applications. This is why in data oriented design, techniques are employed to minimize the number of loads from RAM.
+### 什么是随机 RAM？
+RAM 是计算机通常拥有的一种内存，是存储应用程序及其代码的整个状态的地方。CPU 在执行应用程序代码时与 RAM 交换数据。
 
-### What is a CPU cache?
-A CPU cache is a kind of memory that is much faster, but also _much_ smaller than RAM. When a CPU loads data from RAM it is stored in a cache tier, where lower tiers are faster and larger tiers are slower.
+虽然 RAM 的绝对速度非常快，但 CPU 和 RAM 之间的总线可能会成为数据密集型应用程序的瓶颈。这就是为什么在面向数据的设计中，采用技术来最小化 RAM 的加载数量。
 
-Data oriented design employs techniques to utilize a CPU cache as efficiently as possible, so that the number of loads from RAM are minimized.
+### 什么是 CPU cache？
+CPU cache 是一种比 RAM 快得多，但也比 RAM 小得多的内存。当 CPU 从 RAM 加载数据时，它存储在 cache 中。
 
-### What is a cache line?
-A cache line represents the amount of data that is retrieved from RAM in a single load. When an application requests, say 4 bytes from RAM, a CPU will actually load 64 bytes, starting from the requested address.
+面向数据的设计采用尽可能有效地利用 CPU cache 的技术，从而使 RAM 的负载数量最小化。
 
-An application can reduce the number of loads from RAM by storing data in close proximity, which increases the chance that data required for future operations is already loaded in the cache.
+### 什么是 cache line？
+cache line 表示在一次加载中从 RAM 检索的数据量。当一个应用程序从 RAM 请求（比如4字节）时，CPU 将从请求的地址开始实际加载 64字节。
 
-### What is locality of reference?
-Locality refers to either temporal or spatial locality. Temporal locality refers to the reuse of data within a short amount of time. Spatial locality refers to the proximity of storage locations. High locality in either category increases the efficiency of caching, as a CPU is better able to predict access patterns.
+应用程序可以通过在附近存储数据来减少从 RAM 加载的次数，这增加了将来操作所需的数据已经加载到 cache 中的可能性。
 
-### What is SIMD?
-SIMD, or Single Instruction Multiple Data, refers to a set of instructions or instruction families that can process multiple values in the time it takes to do a single instruction.
+### 什么是 locality of reference(Cache locality)?
+locality 指时间或空间。时间局部性是指在短时间内重复使用数据。空间局部性是指存储位置的紧凑程度。由于 CPU 能够更好地预测访问模式，这两种类型中的高局部性都会提高缓存的效率。
 
-### What is vectorization?
-Vectorization (or automatic vectorization) is the process whereby code that meets certain criteria uses SIMD instructions to improve performance. As a result of using these optimized instructions, vectorized code can run multiple times faster than regular code.
+Cache locality 是一个计算机程序中数据访问的一种现象，即程序重复访问彼此接近的数据，使这些数据存储在缓存内存或处理器缓存中。这提高了系统的速度、效率和性能，因为从缓存内存中访问数据比从主内存中访问数据快得多。
 
-The conditions for vectorized code are:
-- Data must be stored contiguously (in arrays)
-- The code should contain no branches or function calls
+Cache locality 有两种类型: 时间局部性(Temporal Locality)和空间局部性(Spatial Locality)。
 
-Compilers are generally able to vectorize loops that meet the above conditions. It depends on the compiler however which scenarios will be automatically vectorized. [This page](https://llvm.org/docs/Vectorizers.html) provides an overview of scenarios that the clang compiler is able to automatically vectorize.
+- 时间局部性指的是在计算机程序中，部分代码段的重复使用在一段时间内非常频繁，这些代码段被经常地访问和引用。这种局部性通常是指在一段时间内程序的执行中，只有少数指令或数据被频繁重复使用，这些指令或数据的局部性相对于程序中的其他指令或数据更强。
+- 地址局部性指的是在程序访问内存时，指令或数据的地址以及其相邻地址上的数据将被频繁地访问。这种局部性通常是指在程序的执行中，只有少数内存地址被频繁地访问，这些地址的局部性也相对于内存中的其他地址更强。
 
-### What is false sharing?
-False sharing occurs when different threads attempt to load and alter two values that are different, but in the same cache line. This causes a cache sync, which can degrade performance.
+通过优化cache locality，开发者可以显著提高程序的性能。他们可以通过重新排列他们的数据结构或使用利用数据访问模式的空间和时间局部性的算法来实现这一点。
 
-False sharing is avoided by ensuring that data accessed by different threads is not in close enough proximity for it to be loaded in a single cache line.
+### 什么是 SIMD？
+SIMD（单指令多数据）是指一组指令或指令系列，可以在执行一条指令时，处理多个值。
 
-### What is AoS?
-AoS, or "array of structs" refers to a memory layout where a struct containing multiple fields is stored in an array. An example of AoS is:
+### 什么是 vectorization？
+vectorization（或 auto vectorization）是**满足特定标准的代码**使用 SIMD 指令来提高性能的过程。使用这些优化指令的结果是运行速度可以比常规代码快几倍。
+
+vectorize 代码的条件是：
+
+- 数据必须连续存储（在数组中）
+- 代码不应包含分支或函数调用
+
+编译器通常能够对满足上述条件的**循环**进行 vectorization。然而，这取决于编译器将自动 vectorization 哪些场景。[该网站](https://llvm.org/docs/Vectorizers.html)提供了 clang 编译器能够自动 vectorize 的场景概述。
+
+### 什么是 false sharing？
+当不同的线程尝试加载和更改两个不同但位于同一缓存行中的值时，会发生 false sharing。这会导致缓存同步，从而降低性能。
+
+通过确保不同线程访问的数据不太接近，无法在单个 cache line 中加载，可以避免 false sharing。
+
+### 什么是 AoS?
+AoS, or "array of structs" 指包含多个字段的 struct 存储在 array 中的内存布局。如
 
 ```c
 struct AoS {
@@ -436,12 +435,12 @@ struct AoS {
 AoS values[1000];
 ```
 
-An advantage of AoS is that data is stored in arrays which benefits cache locality. A potential disadvantage of AoS is that when code only requires a subset of members in a struct, more data is loaded into the cache than is strictly necessary.
+AoS的一个优点是数据存储在有利于缓存 locality 的数组中。AoS 的一个潜在缺点是，当代码只需要结构中的成员子集时，加载到 cache 中的数据比需要数据要多的多。
 
-In the context of ECS, AoS usually refers to a memory layout where all components are stored in the same array.
+在 ECS 的上下文中，AoS 通常指所有 components 存储在相同 array 中的内存布局。
 
-### What is SoA?
-SoA, or "struct of arrays" refers to a memory layout where a struct contains multiple arrays, one for each field. An example of SoA is:
+### 什么是 SoA?
+SoA, or "struct of arrays" 指一个 struct 包含多个 array 的内存布局。如
 
 ```c
 struct SoA {
@@ -452,44 +451,44 @@ struct SoA {
 SoA values;
 ```
 
-Like AoS, data is stored in arrays which benefits cache locality. An additional advantage of SoA is that when code only needs a subset of members in a struct, the other members are not loaded in cache. A potential disadvantage of SoA is that if code randomly needs to access other members, it incurs more cache misses than AoS.
+与 AoS 一样，SoA 的数据存储在有利于缓存 locality 的数组中。SoA 的另一个优点是，当代码只需要结构中的成员子集时，其他成员不会加载到缓存中。SoA 的一个潜在缺点是，如果代码随机需要访问其他成员，它会导致比 AoS 更多的缓存未命中。
 
-In the context of ECS, SoA usually refers to a memory layout where components are stored in separate arrays.
+在 ECS 的上下文中，SoA 通常指 components 存储在 separate arrays 中的内存布局。
 
-### What is branch prediction?
-When a CPU executes a set of instructions, it tries to predict which path the code will take, by taking an educated guess at how conditional statements (like if-else, switch) will be evaluated. These instructions are then preloaded into the instruction cache, and can even be executed in advance.
+### 什么是 branch prediction?
+当 CPU 执行一组指令时，它试图通过对条件语句（如if-else、switch）的求值方式进行有根据的猜测来预测代码将走哪条路径。这些指令随后被预加载到指令缓存中，甚至可以提前执行。
 
-When code contains many unpredictable branches, the branch predictor may often have to discard the precomputed results, which results in measurably slower code.
+当代码包含许多不可预测的分支时，分支预测器可能经常不得不丢弃预先计算的结果，这会导致代码明显变慢。
 
 ## Glossary
 
 ### Entity
-An entity in ECS represents a single "thing" in a game and is generally represented as a unique integer value.
+一个 Entity 在游戏中表示单个“事物”，通常用唯一的整数值标识。
 
 ### Component
-A component is a datatype that can be added to or removed from entities. Components in ECS are generally plain data types and not encapsulated.
+一个 Component 是可以添加到 Entity 或从 Entity 中删除的数据类型。ECS 中的 Component 通常是没有封装的普通的数据类型。
 
 ### Tag
-A tag is a component that has no data.
+一个 Tag 是一个没有数据的 Component
 
 ### System
-A system is an executable object that is matched with all entities that have a certain set of components. 
+一个 System 是与具有特定 components集合 的 Entity 相匹配的可执行对象。
 
 ### Query
-A query is similar to a system, but cannot be executed by itself.
+Query 类似于 System，但不能单独执行。
 
 ### World
-A world is the container for all ECS data. ECS frameworks often allow a single application to have multiple ECS worlds.
+一个 World 是所有 ECS 数据的容器。ECS 框架通常允许单个应用程序拥有多个 World。
 
 ### Registry
-Same as world.
+同 World
 
 ### Archetype
-A data structure that stores entities for a specific set of components. Components are stored as columns in contiguous arrays. 
+Archetype 是存储 Entities 的数据结构。Components 存储在连续的数组中。
 
 ### Table
-Often used interchangeably with archetype. In some ECS implementations a table refers to an archetype that stores "dense" components (contiguous arrays with aligned indices), where an archetype stores "sparse" components (components not contiguously stored, or not stored with aligned indices) and indexes into a table.
+Table 通常与 Archetype 互换使用。在一些 ECS 的实现中，Table 是指存储密集的 Component （具有对齐索引的连续数组）的 Archetype ，其中将稀疏 Component（不连续存储的 Component，或不具有对齐索引存储的 Component）存储在 Archetype 中，将他们的索引存储到 Table 中。
 
 ### Sparse set
-A data structure that provides fast iteration, lookup, insertion and removal times. Similar to a hashmap, but better suited for sequential identifiers.
+提供快速迭代、查找、插入和删除时间的数据结构。类似于哈希图，但更适合顺序标识符。
 
